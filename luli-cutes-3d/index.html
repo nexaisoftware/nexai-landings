@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light only" />
+  <title>Luli Cute's 3D – Accesorios cute impresos en 3D</title>
+  <meta name="description" content="Luli Cute's 3D – Llaveros, macetas, accesorios de oficina y más, impresos en 3D con estética kawaii y pastel. Mayorista y minorista." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; color-scheme: light only; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #fff0f5;
+      color: #4a2040;
+      overflow-x: hidden;
+    }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --pink: #f472b6;
+      --pink-dark: #ec4899;
+      --pink-light: #fce7f3;
+      --pink-pale: #fff0f5;
+      --purple: #c084fc;
+      --lavender: #e9d5ff;
+      --white: #ffffff;
+      --text: #4a2040;
+      --shadow: 0 4px 24px rgba(236,72,153,0.15);
+      --radius: 20px;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.88);
+      transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,240,245,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #fce7f3;
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .nav-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      filter: drop-shadow(0 2px 6px rgba(236,72,153,0.25));
+    }
+    nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 30px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover { background: var(--pink); color: #fff; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      background: linear-gradient(160deg, #ffe4f0 0%, #fce7f3 40%, #f3e8ff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(244,114,182,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(192,132,252,0.18) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .floating-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .shape {
+      position: absolute;
+      opacity: 0.28;
+      animation: floatShape 3.2s ease-in-out infinite;
+    }
+    /* Círculos */
+    .shape-circle { border-radius: 50%; }
+    .shape-1 { width: 70px; height: 70px; background: var(--pink); top: 10%; left: 5%; animation-delay: 0s; border-radius: 50%; }
+    .shape-3 { width: 90px; height: 90px; background: #f9a8d4; bottom: 15%; left: 8%; animation-delay: 1.2s; border-radius: 50%; }
+    /* Corazones SVG */
+    .shape-heart { width: auto; height: auto; background: none; }
+    .shape-heart svg { display: block; }
+    .shape-2 { top: 18%; right: 7%; animation-delay: 0.6s; }
+    .shape-4 { bottom: 22%; right: 5%; animation-delay: 0.8s; }
+    .shape-5 { top: 48%; left: 3%; animation-delay: 1.6s; }
+    .shape-6 { top: 65%; right: 12%; animation-delay: 2.1s; }
+    .shape-7 { top: 35%; left: 14%; animation-delay: 2.6s; }
+    @keyframes floatShape {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-28px) rotate(20deg); }
+    }
+    .hero-logo {
+      width: min(300px, 72vw);
+      height: auto;
+      filter: drop-shadow(0 8px 24px rgba(236,72,153,0.3));
+      margin-bottom: 24px;
+      animation: logoPop 0.8s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    @keyframes logoPop {
+      from { opacity: 0; transform: scale(0.7) rotate(-5deg); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    .hero-tagline {
+      font-size: clamp(1.5rem, 5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 14px;
+      max-width: 600px;
+    }
+    .hero-tagline .highlight {
+      color: var(--pink-dark);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-tagline .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      border-radius: 4px;
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      color: #7c3a6a;
+      max-width: 480px;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    }
+    .btn svg { width: 17px; height: 17px; }
+    .btn:hover { transform: translateY(-3px) scale(1.04); filter: brightness(1.05); }
+    .btn:active { transform: translateY(0) scale(0.98); }
+    .btn-primary {
+      background: linear-gradient(135deg, #ec4899, #a855f7);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(236,72,153,0.4);
+    }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--pink-dark);
+      border: 2.5px solid var(--pink);
+      box-shadow: var(--shadow);
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--pink-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-indicator svg { width: 22px; height: 22px; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: 80px 24px; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-title h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .section-title p {
+      color: #7c3a6a;
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .pill-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 14px;
+      border-radius: 30px;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== PRODUCTS ===== */
+    .products { background: var(--white); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .product-card {
+      background: linear-gradient(145deg, #fff0f5, #fce7f3);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-align: center;
+      border: 2px solid #fce7f3;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: default;
+    }
+    .product-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(236,72,153,0.2);
+      border-color: var(--pink);
+    }
+    .product-card-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+    .product-card-body {
+      padding: 14px 14px 16px;
+    }
+    .product-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .product-card p {
+      font-size: 0.82rem;
+      color: #7c3a6a;
+      line-height: 1.4;
+    }
+
+    /* ===== WHY US ===== */
+    .why-us {
+      background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .why-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .why-icon { font-size: 2.4rem; margin-bottom: 14px; display: block; }
+    .why-card h3 { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .why-card p { font-size: 0.85rem; color: #7c3a6a; line-height: 1.5; }
+
+    /* ===== WHOLESALE ===== */
+    .wholesale { background: var(--white); }
+    .wholesale-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 760px;
+      margin: 0 auto 40px;
+    }
+    .wh-card {
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .wh-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      padding: 2px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .wh-card.featured {
+      background: linear-gradient(145deg, #fce7f3, #f3e8ff);
+    }
+    .wh-card.regular {
+      background: #fff0f5;
+    }
+    .wh-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 30px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .wh-card h3 { font-size: 1.3rem; font-weight: 900; color: var(--text); margin-bottom: 10px; }
+    .wh-card p { font-size: 0.9rem; color: #7c3a6a; line-height: 1.6; }
+    .wh-card .wh-icon { font-size: 2.4rem; margin-bottom: 14px; display: block; }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      background: linear-gradient(160deg, #ffe4f0 0%, #fce7f3 40%, #f3e8ff 100%);
+    }
+    .contact-wrapper {
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 32px 0;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .social-btn:hover { transform: translateY(-3px) scale(1.03); filter: brightness(1.05); }
+    .social-btn:active { transform: scale(0.98); }
+    .social-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .btn-whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; }
+    .btn-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+    .btn-tiktok { background: linear-gradient(135deg, #010101, #69c9d0); color: #fff; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #4a2040;
+      color: #fce7f3;
+      text-align: center;
+      padding: 32px 24px;
+    }
+    .footer-logo-img {
+      height: 60px;
+      width: auto;
+      margin-bottom: 12px;
+      filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(290deg) drop-shadow(0 2px 8px rgba(244,114,182,0.5));
+    }
+    footer p { font-size: 0.82rem; opacity: 0.7; line-height: 1.6; }
+    footer .hearts { font-size: 1.1rem; margin-top: 10px; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 480px) {
+      section { padding: 60px 18px; }
+      .hero { padding: 60px 18px 80px; }
+      .hero-btns { gap: 10px; }
+      .btn { padding: 8px 18px; font-size: 0.84rem; }
+      header { padding: 10px 18px; }
+      nav a { font-size: 0.78rem; padding: 5px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a class="nav-logo" href="#hero">
+      <img src="assets/logo/logo.png" alt="Luli Cute's 3D" />
+    </a>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#mayorista">Mayorista</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="floating-shapes" aria-hidden="true">
+      <!-- Círculos -->
+      <div class="shape shape-1"></div>
+      <div class="shape shape-3"></div>
+      <!-- Corazones SVG -->
+      <div class="shape shape-heart shape-2">
+        <svg width="48" height="44" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 40.5S3 27 3 14.5A11 11 0 0 1 24 9.5a11 11 0 0 1 21 5C45 27 24 40.5 24 40.5Z" fill="#c084fc"/>
+        </svg>
+      </div>
+      <div class="shape shape-heart shape-4">
+        <svg width="56" height="52" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 40.5S3 27 3 14.5A11 11 0 0 1 24 9.5a11 11 0 0 1 21 5C45 27 24 40.5 24 40.5Z" fill="#f472b6"/>
+        </svg>
+      </div>
+      <div class="shape shape-heart shape-5">
+        <svg width="36" height="33" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 40.5S3 27 3 14.5A11 11 0 0 1 24 9.5a11 11 0 0 1 21 5C45 27 24 40.5 24 40.5Z" fill="#f9a8d4"/>
+        </svg>
+      </div>
+      <div class="shape shape-heart shape-6">
+        <svg width="44" height="40" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 40.5S3 27 3 14.5A11 11 0 0 1 24 9.5a11 11 0 0 1 21 5C45 27 24 40.5 24 40.5Z" fill="#c084fc"/>
+        </svg>
+      </div>
+      <div class="shape shape-heart shape-7">
+        <svg width="30" height="28" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 40.5S3 27 3 14.5A11 11 0 0 1 24 9.5a11 11 0 0 1 21 5C45 27 24 40.5 24 40.5Z" fill="#ec4899"/>
+        </svg>
+      </div>
+    </div>
+    <img
+      class="hero-logo"
+      src="assets/logo/logo.png"
+      alt="Luli Cute's 3D logo"
+      onerror="this.style.display='none'; document.querySelector('.hero-logo-fallback').style.display='block';"
+    />
+    <div class="hero-logo-fallback" style="display:none; font-family:'Pacifico',cursive; font-size:2.8rem; color:#ec4899; margin-bottom:24px; animation: logoPop 0.8s cubic-bezier(.34,1.56,.64,1) forwards;">Luli Cute's 🎀</div>
+    <p class="hero-tagline reveal">
+      Objetos <span class="highlight">cute</span> impresos<br/>en 3D con amor 💕
+    </p>
+    <p class="hero-sub reveal reveal-delay-1">
+      Llaveros, macetas, accesorios de escritorio y más —
+      todo en colores pastel y diseños kawaii únicos. Hacemos tus ideas realidad.
+    </p>
+    <div class="hero-btns reveal reveal-delay-2">
+      <a class="btn btn-primary" href="#contacto">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir por WhatsApp
+      </a>
+      <a class="btn btn-secondary" href="#productos">
+        Ver productos ✨
+      </a>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Explorar</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="products" id="productos">
+    <div class="section-title reveal">
+      <span class="pill-badge">Nuestros productos</span>
+      <h2>Todo cute, todo en 3D 🌸</h2>
+      <p>Diseños únicos impresos con amor. Si lo imaginás, lo hacemos realidad en tu color favorito.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal reveal-delay-1">
+        <img class="product-card-img" src="assets/fotos/llavero.png" alt="Llaveros cute 3D" />
+        <div class="product-card-body">
+          <h3>Llaveros</h3>
+          <p>Diseños kawaii personalizados en todos los colores pastel.</p>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <img class="product-card-img" src="assets/fotos/macetas.png" alt="Macetas cute 3D" />
+        <div class="product-card-body">
+          <h3>Macetas</h3>
+          <p>Para tus plantitas favoritas con un toque de estética.</p>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <img class="product-card-img" src="assets/fotos/oficina.png" alt="Accesorios de oficina 3D" />
+        <div class="product-card-body">
+          <h3>Accesorios de oficina</h3>
+          <p>Porta lápices, clips, organizadores y más.</p>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-4">
+        <img class="product-card-img" src="assets/fotos/agendas.png" alt="Agendas cute 3D" />
+        <div class="product-card-body">
+          <h3>Agendas & Libretas</h3>
+          <p>Decoración cute para que tu estudio sea más lindo.</p>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <img class="product-card-img" src="assets/fotos/personalizados.png" alt="Regalos personalizados 3D" />
+        <div class="product-card-body">
+          <h3>Regalos personalizados</h3>
+          <p>El regalo más original con tu nombre, frase o diseño.</p>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <img class="product-card-img" src="assets/fotos/mas.png" alt="Más productos cute 3D" />
+        <div class="product-card-body">
+          <h3>¡Y mucho más!</h3>
+          <p>Pedinos lo que quieras, hacemos diseños a medida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ ELEGIRNOS -->
+  <section class="why-us">
+    <div class="section-title reveal">
+      <span class="pill-badge">¿Por qué elegirnos?</span>
+      <h2>Calidad + ternura en cada pieza 💖</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <span class="why-icon">🎨</span>
+        <h3>Diseños únicos</h3>
+        <p>Cada pieza es pensada con cariño. Estética kawaii y pastel que te va a enamorar.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <span class="why-icon">🛠️</span>
+        <h3>Alta calidad</h3>
+        <p>Impresión 3D con materiales resistentes y acabados prolijos.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <span class="why-icon">💌</span>
+        <h3>Personalizable</h3>
+        <p>Colores, tamaños y diseños a tu gusto. Hacemos tu idea realidad.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-4">
+        <span class="why-icon">🚀</span>
+        <h3>Envíos a todo el país</h3>
+        <p>Mandamos para donde estés. También retiro local disponible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAYORISTA / MINORISTA -->
+  <section class="wholesale" id="mayorista">
+    <div class="section-title reveal">
+      <span class="pill-badge">Modalidades de compra</span>
+      <h2>Comprá como quieras 🛍️</h2>
+      <p>Tanto si sos una persona que quiere un regalo especial, como si querés revender nuestros productos.</p>
+    </div>
+    <div class="wholesale-cards">
+      <div class="wh-card regular reveal reveal-delay-1">
+        <span class="wh-icon">🛒</span>
+        <div class="wh-tag">Minorista</div>
+        <h3>Compra personal</h3>
+        <p>Pedí la pieza que querés, en el color y tamaño que elijas. Ideal para regalar o para vos.</p>
+      </div>
+      <div class="wh-card featured reveal reveal-delay-2">
+        <span class="wh-icon">📦</span>
+        <div class="wh-tag">Mayorista</div>
+        <h3>Revendedores</h3>
+        <p>Precios especiales para quienes compran en cantidad. Consultanos por catálogo y condiciones mayoristas.</p>
+      </div>
+    </div>
+    <div style="text-align:center;" class="reveal reveal-delay-3">
+      <a class="btn btn-primary" href="https://wa.me/543571590822?text=Hola!%20Vi%20la%20landing%20y%20me%20interesan%20sus%20productos%20%F0%9F%8E%80" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultar mayorista
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="contact-wrapper">
+      <div class="section-title reveal">
+        <span class="pill-badge">Contacto</span>
+        <h2>¡Hablemos! 💬</h2>
+        <p>Escribinos por donde prefieras. Respondemos rápido con mucho amor 🎀</p>
+      </div>
+      <div class="social-links">
+        <a class="social-btn btn-whatsapp reveal reveal-delay-1"
+           href="https://wa.me/543571590822?text=Hola!%20Vi%20la%20landing%20y%20me%20interesan%20sus%20productos%20%F0%9F%8E%80"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp +54 3571 590822
+        </a>
+        <a class="social-btn btn-instagram reveal reveal-delay-2"
+           href="https://www.instagram.com/lulicutes.3d/"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @lulicutes.3d
+        </a>
+        <a class="social-btn btn-tiktok reveal reveal-delay-3"
+           href="https://www.tiktok.com/@lulicutes.3d"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+          TikTok @lulicutes.3d
+        </a>
+      </div>
+      <p class="reveal" style="font-size:0.88rem; color:#7c3a6a; margin-top:8px;">
+        📍 Córdoba, Argentina · Envíos a todo el país 🇦🇷
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img class="footer-logo-img" src="assets/logo/logo.png" alt="Luli Cute's 3D" />
+    <p>Impresión 3D con estética kawaii y pastel · Mayorista & Minorista</p>
+    <p>📸 <a href="https://www.instagram.com/lulicutes.3d/" style="color:var(--pink);">@lulicutes.3d</a></p>
+    <div class="hearts">💕 Hecho con amor 💕</div>
+  </footer>
+
+  <!-- SCROLL REVEAL JS -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Trigger hero reveals immediately
+    setTimeout(() => {
+      document.querySelectorAll('.hero .reveal').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 300);
+  </script>
+</body>
+</html>

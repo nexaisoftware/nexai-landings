@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NexAI Software - Landings Portfolio</title>
+  <meta name="description" content="Coleccion publica de landings y sitios estaticos creados por NexAI Software.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0c1018;
+      --panel: #141a24;
+      --text: #f5f7fb;
+      --muted: #aab3c2;
+      --line: #293244;
+      --accent: #69d2ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    main {
+      width: min(1040px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1;
+    }
+
+    p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    a {
+      display: block;
+      min-height: 170px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus-visible {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    span {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>NexAI Software</h1>
+    <p>Coleccion publica de landings y sitios estaticos creados para proyectos propios y clientes.</p>
+
+    <section class="grid" aria-label="Landings">
+      <a href="./fernecito-landing/">
+        <strong>Fernecito App</strong>
+        <span>Landing publica para eventos, salidas, squads y reservas.</span>
+      </a>
+      <a href="./santiago-medrano-portfolio/">
+        <strong>Santiago Medrano</strong>
+        <span>Portfolio personal de producto, UX y desarrollo fullstack.</span>
+      </a>
+      <a href="./luli-cutes-3d/">
+        <strong>Luli Cute's 3D</strong>
+        <span>Landing comercial para productos impresos en 3D.</span>
+      </a>
+      <a href="./nm-mkt/">
+        <strong>NM.MKT</strong>
+        <span>Sitio estatico para agencia de marketing digital y branding.</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>

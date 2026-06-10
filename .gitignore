@@ -1,0 +1,14 @@
+.DS_Store
+.vercel/
+node_modules/
+build/
+dist/
+coverage/
+*.log
+*.zip
+
+# Local environment files must never be published.
+.env
+.env.*
+!.env.example
+!.env.ejemplo
